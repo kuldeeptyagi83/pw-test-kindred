@@ -1,0 +1,6 @@
+# Ignore artifacts:
+playwright-report/
+test-results/
+
+# Ignore node_modules:
+node_modules
