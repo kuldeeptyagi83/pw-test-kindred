@@ -11,14 +11,11 @@ if (!process.env.TEST_PASSWORD) {
   throw new Error("The TEST_PASSWORD environment variable is not set in .env file ...");
 }
 
-if (!process.env.APP_URL) {
-  throw new Error("The APP_URL environment variable is not set in .env file ...");
-}
-
 export const TEST_PASSWORD = process.env.TEST_PASSWORD;
 export const TEST_USERNAME = process.env.TEST_USERNAME;
 
-// const appBaseUrl = process.env.APP_URL ?? "https://www.saucedemo.com"
+const appBaseUrl =
+  process.env.APP_URL && process.env.APP_URL.trim() !== "" ? process.env.APP_URL : "https://www.saucedemo.com";
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -45,7 +42,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: process.env.APP_URL,
+    baseURL: appBaseUrl,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "retain-on-failure",
@@ -64,7 +61,7 @@ export default defineConfig({
       dependencies: ["loginSetup"],
       use: {
         ...devices["Desktop Chrome"],
-        baseURL: process.env.APP_URL,
+        baseURL: appBaseUrl,
         trace: "on-first-retry",
         storageState: `storageState-${TEST_USERNAME}.json`,
       },
