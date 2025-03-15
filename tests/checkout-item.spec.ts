@@ -1,6 +1,6 @@
 import { test, expect } from "../fixtures/fixtures";
 
-test("Check out items", async ({
+test("Validate complete checkout process with multiple items", async ({
   productsPage,
   yourCartPage,
   checkoutInformationPage,
@@ -12,7 +12,8 @@ test("Check out items", async ({
     { name: "Sauce Labs Bolt T-Shirt", price: "$15.99" },
   ];
 
-  await test.step("Given the user add products to cart and verify their count", async () => {
+  await test.step("Given the user is logged in and navigates to the inventory page to add products to the cart and verify their count", async () => {
+    // await productsPage.navigate();
     await productsPage.addProductsToCart(products);
     expect(await productsPage.getCartItemsCount()).toBe(products.length);
   });
@@ -44,7 +45,7 @@ test("Check out items", async ({
     await checkoutOverviewPage.getFinishButton().click();
   });
 
-  await test.step("Then the order should be completed successfully", async () => {
+  await test.step("Then the order should be completed successfully and cart is empty", async () => {
     await expect(checkoutCompletePage.getCompleteHeader()).toBeVisible();
     await expect(checkoutCompletePage.getCompleteHeaderText()).toBeVisible();
     expect(await checkoutCompletePage.getCartItemsCount()).toBe(0);

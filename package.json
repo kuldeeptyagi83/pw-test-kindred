@@ -1,7 +1,7 @@
 {
   "name": "pw-test-kindred",
   "version": "1.0.0",
-  "description": "",
+  "description": "A test automation suite using Playwright for end-to-end testing.",
   "main": "index.js",
   "scripts": {
     "pretest": "tsc --noEmit && npm run lint",
@@ -11,12 +11,12 @@
     "format": "prettier --check \"**/*.ts\"",
     "format:fix": "prettier --write \"**/*.ts\"" ,
     "test:headful": "playwright test --headed",
-    "test:report": "npx playwright show-report",
+    "test:report": "playwright show-report",
     "test:debug": "playwright test --debug",
     "test:ui": "playwright test --ui"
   },
   "keywords": [],
-  "author": "",
+  "author": "Kuldeep Tyagi",
   "license": "ISC",
   "devDependencies": {
     "@eslint/js": "^9.22.0",

@@ -2,6 +2,10 @@ import { defineConfig, devices } from "@playwright/test";
 import * as dotenv from "dotenv";
 import * as path from "path";
 
+/**
+ * Read environment variables from file.
+ * https://github.com/motdotla/dotenv
+ */
 dotenv.config({ path: path.resolve(__dirname, ".env") });
 
 if (!process.env.TEST_USERNAME) {
@@ -16,13 +20,6 @@ export const TEST_USERNAME = process.env.TEST_USERNAME;
 
 const appBaseUrl =
   process.env.APP_URL && process.env.APP_URL.trim() !== "" ? process.env.APP_URL : "https://www.saucedemo.com";
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 /**
  * See https://playwright.dev/docs/test-configuration.
